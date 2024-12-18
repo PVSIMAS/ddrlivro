@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Conhecimento</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            text-align: left;
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: left;
+        }
+
+        canvas {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="quizContainer">
+        <h1>Teste de Conhecimento DDR - Livro </h1>
+        <form id="quizForm">
+            <!-- Questão 1 -->
+            <div class="question">
+                <h2>Questão 1</h2>
+                <p>Como você utiliza as diretrizes estratégicas (missão, visão e valores) na tomada de decisões do seu restaurante?</p>
+                <label><input type="radio" name="q1" value="0.63-A-Estratégia" required> A. Raramente consulto as diretrizes.</label>
+                <label><input type="radio" name="q1" value="2.5-B-Estratégia"> B. Integro as diretrizes na maioria das decisões e operações.</label>
+                <label><input type="radio" name="q1" value="1.25-C-Estratégia"> C. Consulto ocasionalmente, mas não de forma consistente.</label>
+                <label><input type="radio" name="q1" value="1.88-D-Estratégia"> D. Frequentemente alinho as decisões com as diretrizes.</label>
+            </div>
+            <!-- Questão 2 -->
+            <div class="question">
+                <h2>Questão 2</h2>
+                <p>Qual o nível de desenvolvimento da missão, visão e valores em sua gestão?</p>
+                <label><input type="radio" name="q2" value="2.5-A-Estratégia" required> A. São definidos com participação da equipe e aplicados no dia a dia.</label>
+                <label><input type="radio" name="q2" value="0.63-B-Estratégia"> B. Não estão formalizados.</label>
+                <label><input type="radio" name="q2" value="1.25-C-Estratégia"> C. Estão definidos, mas pouco revisados ou aplicados.</label>
+                <label><input type="radio" name="q2" value="1.88-D-Estratégia"> D. Estão formalizados e revisados anualmente.</label>
+            </div>
+            <!-- Questão 3 -->
+            <div class="question">
+                <h2>Questão 3</h2>
+                <p>Como você avalia o posicionamento do seu restaurante no mercado?</p>
+                <label><input type="radio" name="q3" value="0.63-A-Estratégia" required> A. Ruim. Não tenho um público bem definido e nem clareza quanto ao meu diferencial de mercado.</label>
+                <label><input type="radio" name="q3" value="1.25-B-Estratégia"> B. Razoável. Faço diferentes estratégias para atingir vários públicos e acredito que meus diferenciais de mercado precisam ser melhor trabalhados.</label>
+                <label><input type="radio" name="q3" value="1.88-C-Estratégia"> C. Bom. Sei quem é meu público e acredito que ele enxerga os meus diferenciais.</label>
+                <label><input type="radio" name="q3" value="2.5-D-Estratégia"> D. Ótimo! Possuo um posicionamento claro, com estratégias bem definidas para o meu público e eles entendem os meus diferenciais de mercado.</label>
+            </div>
+            <!-- Questão 4 -->
+            <div class="question">
+                <h2>Questão 4</h2>
+                <p>Qual é o seu nível de clareza quanto à estratégia de expansão do seu restaurante?</p>
+                <label><input type="radio" name="q4" value="0.63-A-Estratégia" required> A. Não tenho uma estratégia de expansão.</label>
+                <label><input type="radio" name="q4" value="1.25-B-Estratégia"> B. Considero a expansão, mas não tenho clareza quanto a qual modelo de expansão seguir.</label>
+                <label><input type="radio" name="q4" value="1.88-C-Estratégia"> C. Tenho planos de expansão do meu restaurante, mas eles não estão formalizados.</label>
+                <label><input type="radio" name="q4" value="2.5-D-Estratégia"> D. Tenho uma estratégia clara de expansão com metas e prazos bem definidos.</label>
+            </div>
+            <!-- Questão 5 -->
+            <div class="question">
+                <h2>Questão 5</h2>
+                <p>Como você avalia os Procedimentos Operacionais Padrão (POPs) no seu restaurante?</p>
+                <label><input type="radio" name="q5" value="2.5-A-Processos" required> A. A maioria dos procedimentos está bem documentada e funciona de forma consistente.</label>
+                <label><input type="radio" name="q5" value="0.63-B-Processos"> B. Não formalizei os procedimentos operacionais, ensino a equipe de forma prática.</label>
+                <label><input type="radio" name="q5" value="1.25-C-Processos"> C. Alguns procedimentos estão definidos, mas não são seguidos por todos.</label>
+                <label><input type="radio" name="q5" value="1.88-D-Processos"> D. Já formalizei os procedimentos, mas há dificuldades em manter a adesão constante.</label>
+            </div>
+            <!-- Questão 6 -->
+            <div class="question">
+                <h2>Questão 6</h2>
+                <p>Como você realiza o controle de estoque no seu restaurante?</p>
+                <label><input type="radio" name="q6" value="2.5-A-Processos" required> A. O controle de estoque é feito com ferramentas digitais, o que facilita o acompanhamento frequente.</label>
+                <label><input type="radio" name="q6" value="0.63-B-Processos"> B. O controle de estoque é realizado manualmente e revisado com pouca frequência.</label>
+                <label><input type="radio" name="q6" value="1.25-C-Processos"> C. Faço o controle de estoque manualmente, mas reviso semanalmente.</label>
+                <label><input type="radio" name="q6" value="1.88-D-Processos"> D. Utilizo um sistema digital para controlar o estoque, mas não reviso com a frequência que gostaria.</label>
+            </div>
+            <!-- Questão 7 -->
+            <div class="question">
+                <h2>Questão 7</h2>
+                <p>Como você garante a padronização dos pratos no seu restaurante?</p>
+                <label><input type="radio" name="q7" value="2.5-A-Processos" required> A. Utilizo fichas técnicas e a equipe está treinada para seguir as orientações no preparo.</label>
+                <label><input type="radio" name="q7" value="0.63-B-Processos"> B. Não tenho um processo formal para padronizar os pratos.</label>
+                <label><input type="radio" name="q7" value="1.25-C-Processos"> C. Tenho fichas técnicas para alguns pratos, mas nem todos os preparos seguem o padrão.</label>
+                <label><input type="radio" name="q7" value="1.88-D-Processos"> D. As fichas técnicas são usadas para a maioria dos pratos, mas ainda há ajustes a fazer em alguns processos.</label>
+            </div>
+            <!-- Questão 8 -->
+            <div class="question">
+                <h2>Questão 8</h2>
+                <p>Como está organizado o fluxo de trabalho na cozinha?</p>
+                <label><input type="radio" name="q8" value="0.63-A-Processos" required> A. Não há uma organização clara e ocorrem atrasos frequentes.</label>
+                <label><input type="radio" name="q8" value="1.25-B-Processos"> B. O fluxo é organizado, mas ainda ocorrem sobrecargas em horários de pico.</label>
+                <label><input type="radio" name="q8" value="1.88-C-Processos"> C. O fluxo é bem organizado, com algumas falhas pontuais.</label>
+                <label><input type="radio" name="q8" value="2.5-D-Processos"> D. O fluxo é bem estruturado, sem falhas e a equipe trabalha de forma coordenada.</label>
+            </div>
+            <!-- Questão 9 -->
+            <div class="question">
+                <h2>Questão 9</h2>
+                <p>Como você avalia o volume de vendas atual do seu restaurante?</p>
+                <label><input type="radio" name="q9" value="2.5-A-Vendas" required> A. As vendas estão abaixo do esperado e não estão crescendo.</label>
+                <label><input type="radio" name="q9" value="1.88-B-Vendas"> B. O volume de vendas está estável, mas sem aumento significativo.</label>
+                <label><input type="radio" name="q9" value="0.63-C-Vendas"> C. O volume de vendas está superando as metas estabelecidas.</label>
+                <label><input type="radio" name="q9" value="1.25-D-Vendas"> D. O volume de vendas é razoável, mas oscila ao longo dos meses.</label>
+            </div>
+            <!-- Questão 10 -->
+            <div class="question">
+                <h2>Questão 10</h2>
+                <p>Como você avalia a satisfação dos seus clientes após a venda?</p>
+                <label><input type="radio" name="q10" value="2.5-A-Vendas" required> A. Faço pesquisas regulares de satisfação e uso os resultados para ajustes no serviço.</label>
+                <label><input type="radio" name="q10" value="1.88-B-Vendas"> B. Pergunto aos clientes ocasionalmente, mas sem um processo formal.</label>
+                <label><input type="radio" name="q10" value="1.25-C-Vendas"> C. Realizo perguntas informais sobre a satisfação dos clientes, mas sem regularidade.</label>
+                <label><input type="radio" name="q10" value="0.63-D-Vendas"> D. Tenho um processo básico para coletar feedback, mas raramente utilizo os dados para ajustes.</label>
+            </div>
+            <!-- Questão 11 -->
+            <div class="question">
+                <h2>Questão 11</h2>
+                <p>Qual é a meta de vendas estabelecida para o seu restaurante?</p>
+                <label><input type="radio" name="q11" value="1.88-A-Vendas" required> A. Não tenho uma meta de vendas clara.</label>
+                <label><input type="radio" name="q11" value="1.25-B-Vendas"> B. Estabeleço metas, mas acompanho apenas esporadicamente.</label>
+                <label><input type="radio" name="q11" value="0.63-C-Vendas"> C. Minhas metas de vendas são definidas e revisadas periodicamente.</label>
+                <label><input type="radio" name="q11" value="2.5-D-Vendas"> D. Defino metas claras e monitoro o desempenho com frequência, ajustando conforme necessário.</label>
+            </div>
+            <!-- Questão 12 -->
+            <div class="question">
+                <h2>Questão 12</h2>
+                <p>O restaurante consegue funcionar sem a sua presença por um período de tempo?</p>
+                <label><input type="radio" name="q12" value="0.63-A-Vendas" required> A. Não utilizo essas técnicas.</label>
+                <label><input type="radio" name="q12" value="1.25-B-Vendas"> B. Sei o que são, mas raramente as aplico.</label>
+                <label><input type="radio" name="q12" value="1.88-C-Vendas"> C. Aplico algumas vezes, mas sem consistência.</label>
+                <label><input type="radio" name="q12" value="2.5-D-Vendas"> D. Uso regularmente essas técnicas para aumentar o ticket médio.</label>
+            </div>
+            <!-- Questão 13 -->
+            <div class="question">
+                <h2>Questão 13</h2>
+                <p>Como você avalia as campanhas de marketing do seu restaurante?</p>
+                <label><input type="radio" name="q13" value="2.5-A-Marketing" required> A. Não faço campanhas de marketing estruturadas.</label>
+                <label><input type="radio" name="q13" value="1.25-B-Marketing"> B. Realizo campanhas pontuais, mas sem uma estratégia clara de acompanhamento.</label>
+                <label><input type="radio" name="q13" value="1.88-C-Marketing"> C. Realizo campanhas de marketing com objetivos claros e acompanho os resultados de forma esporádica.</label>
+                <label><input type="radio" name="q13" value="0.63-D-Marketing"> D. Minhas campanhas de marketing são bem planejadas, têm objetivos claros e os resultados são monitorados regularmente.</label>
+            </div>
+            <!-- Questão 14 -->
+            <div class="question">
+                <h2>Questão 14</h2>
+                <p>Você já utiliza tráfego pago em suas estratégias de marketing?</p>
+                <label><input type="radio" name="q14" value="0.63-A-Marketing" required> A. Nunca utilizei tráfego pago em minhas campanhas.</label>
+                <label><input type="radio" name="q14" value="1.25-B-Marketing"> B. Já testei tráfego pago, mas não obtive os resultados esperados.</label>
+                <label><input type="radio" name="q14" value="1.88-C-Marketing"> C. Utilizo tráfego pago ocasionalmente, mas ainda estou ajustando para melhorar os resultados.</label>
+                <label><input type="radio" name="q14" value="2.5-D-Marketing"> D. Utilizo tráfego pago regularmente e monitoro os resultados para ajustar as estratégias.</label>
+            </div>
+            <!-- Questão 15 -->
+            <div class="question">
+                <h2>Questão 15</h2>
+                <p>Como você avalia o posicionamento digital do seu restaurante?</p>
+                <label><input type="radio" name="q15" value="1.88-A-Marketing" required> A. O restaurante tem pouca presença em redes sociais e plataformas digitais.</label>
+                <label><input type="radio" name="q15" value="1.25-B-Marketing"> B. Tenho presença em algumas redes sociais, mas sem uma estratégia clara de comunicação.</label>
+                <label><input type="radio" name="q15" value="0.63-C-Marketing"> C. O restaurante está presente nas principais redes sociais e a comunicação é feita com certa regularidade.</label>
+                <label><input type="radio" name="q15" value="2.5-D-Marketing"> D. O restaurante tem forte presença digital, com comunicação regular e interações frequentes com os clientes.</label>
+            </div>
+            <!-- Questão 16 -->
+            <div class="question">
+                <h2>Questão 16</h2>
+                <p>Seu restaurante investe em marketing de influência (parcerias com influenciadores) e como você avalia os resultados?</p>
+                <label><input type="radio" name="q16" value="0.63-A-Marketing" required> A. Não invisto nisso.</label>
+                <label><input type="radio" name="q16" value="1.25-B-Marketing"> B. Penso em investir, mas ainda não implementei essa ação.</label>
+                <label><input type="radio" name="q16" value="1.88-C-Marketing"> C. Fiz algumas parcerias, mas sem resultados claros.</label>
+                <label><input type="radio" name="q16" value="2.5-D-Marketing"> D. Faço parcerias regulares com influenciadores e tenho bons resultados.</label>
+            </div>
+            <!-- Questão 17 -->
+            <div class="question">
+                <h2>Questão 17</h2>
+                <p>Como você avalia a saúde financeira do seu negócio?</p>
+                <label><input type="radio" name="q17" value="1.25-A-Finanças" required> A. A saúde financeira do negócio é variável, com períodos de sobra e outros de escassez.</label>
+                <label><input type="radio" name="q17" value="0.63-B-Finanças"> B. As finanças estão desequilibradas, e frequentemente tenho dificuldades para cobrir os custos mensais.</label>
+                <label><input type="radio" name="q17" value="2.5-C-Finanças"> C. Tenho uma boa margem financeira, com lucros que permitem investimentos e expansão.</label>
+                <label><input type="radio" name="q17" value="1.88-D-Finanças"> D. As finanças estão em um nível estável, mas sem grandes sobras para investimentos.</label>
+            </div>
+            <!-- Questão 18 -->
+            <div class="question">
+                <h2>Questão 18</h2>
+                <p>Como você faz o controle do Custo de Mercadorias Vendidas (CMV)?</p>
+                <label><input type="radio" name="q18" value="1.25-A-Finanças" required> A. Faço o controle do CMV, mas de forma esporádica e sem acompanhamento detalhado.</label>
+                <label><input type="radio" name="q18" value="2.5-B-Finanças"> B. Faço o controle detalhado do CMV e utilizo os dados para ajustar o preço de venda e maximizar a lucratividade.</label>
+                <label><input type="radio" name="q18" value="0.63-C-Finanças"> C. Não faço o controle do CMV de forma estruturada.</label>
+                <label><input type="radio" name="q18" value="1.88-D-Finanças"> D. Tenho um controle regular do CMV, mas sem integração com outros indicadores financeiros.</label>
+            </div>
+            <!-- Questão 19 -->
+            <div class="question">
+                <h2>Questão 19</h2>
+                <p>Como você avalia a gestão financeira do seu restaurante?</p>
+                <label><input type="radio" name="q19" value="1.88-A-Finanças" required> A. Faço o controle do fluxo de caixa, mas ainda não utilizo DRE ou outros relatórios detalhados.</label>
+                <label><input type="radio" name="q19" value="0.63-B-Finanças"> B. Não tenho um sistema de controle financeiro e as decisões são feitas de forma intuitiva.</label>
+                <label><input type="radio" name="q19" value="1.25-C-Finanças"> C. Faço o controle financeiro, mas sem uso de ferramentas formais, como DRE ou fluxo de caixa.</label>
+                <label><input type="radio" name="q19" value="2.5-D-Finanças"> D. Utilizo o fluxo de caixa e DRE regularmente para tomar decisões baseadas em dados financeiros.</label>
+            </div>
+            <!-- Questão 20 -->
+            <div class="question">
+                <h2>Questão 20</h2>
+                <p>Como você acompanha a saúde financeira do seu restaurante?</p>
+                <label><input type="radio" name="q20" value="2.5-A-Finanças" required> A. Acompanho as finanças regularmente e utilizo relatórios detalhados como DRE e fluxo de caixa.</label>
+                <label><input type="radio" name="q20" value="1.88-B-Finanças"> B. Faço um acompanhamento financeiro regular, mas não com todos os indicadores financeiros necessários.</label>
+                <label><input type="radio" name="q20" value="1.25-C-Finanças"> C. Acompanho as finanças ocasionalmente, mas sem relatórios estruturados.</label>
+                <label><input type="radio" name="q20" value="0.63-D-Finanças"> D. Não acompanho formalmente, e faço as avaliações de forma superficial.</label>
+            </div>
+            <!-- Questão 21 -->
+            <div class="question">
+                <h2>Questão 21</h2>
+                <p>Como está a gestão de pessoas no seu restaurante?</p>
+                <label><input type="radio" name="q21" value="1.88-A-Pessoas" required> A. Faço reuniões regulares, mas nem sempre abordo todos os temas.</label>
+                <label><input type="radio" name="q21" value="2.5-B-Pessoas"> B. Faço reuniões periódicas para discutir gestão e desempenho.</label>
+                <label><input type="radio" name="q21" value="1.25-C-Pessoas"> C. Faço reuniões esporádicas.</label>
+                <label><input type="radio" name="q21" value="0.63-D-Pessoas"> D. Não faço reuniões com a equipe.</label>
+            </div>
+            <!-- Questão 22 -->
+            <div class="question">
+                <h2>Questão 22</h2>
+                <p>Como você avalia o desempenho da sua equipe?</p>
+                <label><input type="radio" name="q22" value="1.25-A-Pessoas" required> A. Desempenho razoável, com áreas de melhoria.</label>
+                <label><input type="radio" name="q22" value="2.5-B-Pessoas"> B. A equipe tem um desempenho consistente e alinhado com as expectativas.</label>
+                <label><input type="radio" name="q22" value="0.63-C-Pessoas"> C. Desempenho insatisfatório, muitos pontos a melhorar.</label>
+                <label><input type="radio" name="q22" value="1.88-D-Pessoas"> D. Bom desempenho, com necessidade de ajustes.</label>
+            </div>
+            <!-- Questão 23 -->
+            <div class="question">
+                <h2>Questão 23</h2>
+                <p>Você realiza reuniões periódicas para discutir a gestão de pessoas?</p>
+                <label><input type="radio" name="q23" value="1.25-A-Pessoas" required> A. Reuniões somente quando surgem problemas.</label>
+                <label><input type="radio" name="q23" value="2.5-B-Pessoas"> B. Realizo reuniões regulares focadas em gestão de pessoas.</label>
+                <label><input type="radio" name="q23" value="1.88-C-Pessoas"> C. Faço reuniões regulares, mas nem sempre sobre gestão de pessoas.</label>
+                <label><input type="radio" name="q23" value="0.63-D-Pessoas"> D. Não realizo reuniões.</label>
+            </div>
+            <!-- Questão 24 -->
+            <div class="question">
+                <h2>Questão 24</h2>
+                <p>Qual é o processo de integração de novos colaboradores?</p>
+                <label><input type="radio" name="q24" value="1.25-A-Pessoas" required> A. Outro colaborador ensina nos primeiros dias.</label>
+                <label><input type="radio" name="q24" value="2.5-B-Pessoas"> B. Tenho um processo formal de integração com treinamento.</label>
+                <label><input type="radio" name="q24" value="0.63-C-Pessoas"> C. Não tenho um processo de integração.</label>
+                <label><input type="radio" name="q24" value="1.88-D-Pessoas"> D. Apresento regras e acompanho o início.</label>
+            </div>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+    <div class="container" id="resultContainer" style="display: none;">
+        <h1>Relatório de Desempenho</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Questão</th>
+                    <th>Conteúdo</th>
+                    <th>Resposta</th>
+                    <th>Pontuação</th>
+                    <th>Feedback</th>
+                </tr>
+            </thead>
+            <tbody id="resultTableBody"></tbody>
+        </table>
+        <h2>Indicador de Desempenho</h2>
+        <p>Total: <span id="totalScore"></span></p>
+        <button id="nextButton">Próxima Página</button>
+    </div>
+
+    <div class="container" id="detailedSummaryContainer" style="display: none;">
+        <h1>Detalhamento de Pontuação por Pilar</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Pilar</th>
+                    <th>Pontuação</th>
+                </tr>
+            </thead>
+            <tbody id="detailedSummaryTableBody"></tbody>
+        </table>
+        <canvas id="radarChart"></canvas>
+        <button id="backButton">Voltar para Resultados</button>
+    </div>
+
+    <script>
+        const feedback = {
+            "q1": {
+                "A": "Considere usar suas diretrizes estratégicas com mais frequência para guiar suas decisões, trazendo clareza e direção para o futuro.",
+                "B": "Excelente abordagem! Manter um alto nível de alinhamento estratégico ajuda no crescimento e na eficiência do negócio.",
+                "C": "Para maximizar o impacto, faça das diretrizes um ponto central em todas as suas decisões estratégicas.",
+                "D": "Bom trabalho! Aumente o uso das diretrizes para garantir que elas permeiem todos os níveis da gestão."
+            },
+            "q2": {
+                "A": "Parabéns! Mantenha o engajamento e a aplicação diária para fortalecer a cultura e o alinhamento estratégico.",
+                "B": "Formalize missão, visão e valores com a equipe, documente-os e comunique de forma clara, usando treinamentos para promover adesão.",
+                "C": "Revise os elementos anualmente e aplique-os no dia a dia, engajando a equipe para aumentar o comprometimento e a relevância.",
+                "D": "Envolva a equipe na construção e aplicação prática diária para alcançar maior integração e uma cultura mais participativa."
+            },
+            "q3": {
+                "A": "Recomendamos definir seu público-alvo e trabalhar nos diferenciais que tornam seu restaurante único. Isso ajudará a estabelecer uma marca mais clara e reconhecida.",
+                "B": "Trabalhe para refinar seus diferenciais e alinhar suas estratégias para focar em um público específico, garantindo que seu restaurante seja reconhecido de forma clara no mercado.",
+                "C": "Continue reforçando o relacionamento com seu público e ajustando suas estratégias para garantir que seus diferenciais permaneçam claros e relevantes no mercado.",
+                "D": "Parabéns! Seu restaurante possui um posicionamento de marca forte e bem definido. Continue inovando para manter essa liderança no mercado."
+            },
+            "q4": {
+                "A": "Recomendamos desenvolver uma estratégia clara para expansão, seja por novos canais de vendas, mais locais ou parcerias. O crescimento é fundamental para manter a competitividade.",
+                "B": "Avalie diferentes modelos de expansão e defina um caminho claro, levando em consideração fatores como capacidade financeira, demanda do mercado e gestão operacional.",
+                "C": "Formalize seus planos de expansão com metas claras e prazos definidos. A formalização permite monitorar o progresso e fazer ajustes conforme necessário, aumentando as chances de sucesso.",
+                "D": "Parabéns! Você possui uma estratégia clara de expansão, o que é crucial para o crescimento sustentável do negócio. Continue monitorando o progresso e ajustando conforme necessário para garantir o sucesso a longo prazo."
+            },
+            "q5": {
+                "A": "Procedimentos bem documentados e aplicados de maneira consistente garantem maior eficiência nas operações. Continue a aplicá-los consistentemente para melhorar qualidade e produtividade.",
+                "B": "A falta de formalização dos procedimentos pode levar a inconsistências operacionais. Formalize-os para garantir eficiência e padrões consistentes.",
+                "C": "Ter alguns procedimentos definidos é um passo positivo, mas a falta de adesão da equipe reduz sua eficácia. Reforce o treinamento para garantir consistência.",
+                "D": "A formalização dos procedimentos é um avanço, mas é importante monitorar para garantir que sejam seguidos consistentemente. Continue monitorando e ajustando o uso dos POPs para garantir que sejam aplicados de forma eficaz."
+            },
+            "q6": {
+                "A": "O uso de ferramentas digitais para controle de estoque aumenta a precisão e ajuda a reduzir desperdícios e custos. Mantenha o uso para maior controle e eficiência.",
+                "B": "O controle manual com pouca frequência pode resultar em erros e perdas financeiras devido à falta de visibilidade do estoque. Adote revisão mais regular e considere ferramentas digitais para otimização.",
+                "C": "A revisão semanal ajuda a manter o controle, mas o método manual ainda está sujeito a erros e inconsistências. Implementar ferramentas digitais pode aumentar precisão e reduzir inconsistências.",
+                "D": "O uso de ferramentas digitais é positivo, mas a falta de revisão regular pode comprometer a precisão das informações. Reforce o monitoramento para informações atualizadas."
+            },
+            "q7": {
+                "A": "Fichas técnicas e treinamento garantem padronização e qualidade dos pratos. Continue o uso para manter a consistência e controle de custos.",
+                "B": "A falta de um processo formal para padronização pode resultar em inconsistência na qualidade dos pratos e afetar a satisfação do cliente. Implemente fichas técnicas e treine a equipe para melhorar a qualidade.",
+                "C": "O uso de fichas técnicas é um bom começo, mas a inconsistência no preparo dos pratos pode comprometer a qualidade final. Reforce o treinamento para padronização completa.",
+                "D": "O uso de fichas técnicas para a maioria dos pratos é uma prática positiva, mas ajustes nos processos podem melhorar a consistência. Expanda o uso para uniformidade total."
+            },
+            "q8": {
+                "A": "A falta de organização gera atrasos e compromete a eficiência. Implemente uma estrutura clara para melhorar a operação.",
+                "B": "A organização é positiva, mas precisa de ajustes para horários críticos. Ajuste o fluxo para evitar sobrecargas.",
+                "C": "O fluxo de trabalho funciona bem, mas ajustes pontuais podem melhorar a operação. Continue ajustando os processos para melhor desempenho.",
+                "D": "Um fluxo bem estruturado garante eficiência e reduz falhas. Mantenha a organização para continuar eficiente."
+            },
+            "q9": {
+                "A": "O volume de vendas abaixo do esperado requer ajustes nas estratégias de atração de clientes e marketing para estimular o crescimento. Continue otimizando suas estratégias para manter esse ritmo de crescimento nas vendas.",
+                "B": "O volume estável é positivo, mas explorar novas oportunidades, como promoções e diversificação de produtos, pode aumentar as vendas. Considere explorar novas oportunidades de vendas, como promoções e diversificação de produtos.",
+                "C": "Superar as metas de vendas reflete estratégias bem-sucedidas. Continue otimização para manter o crescimento. Avalie suas estratégias de vendas e marketing para impulsionar o volume e atrair mais clientes.",
+                "D": "Volume de vendas razoável, mas instável, pode indicar sazonalidade ou falta de fidelização. Trabalhe para estabilizar as vendas ao longo do tempo. Trabalhe para estabilizar as vendas e garantir maior consistência ao longo do tempo."
+            },
+            "q10": {
+                "A": "Realizar pesquisas de satisfação regularmente e aplicar os resultados reforça o compromisso com a experiência do cliente. Continue esse processo. Excelente! Continue usando o feedback dos clientes para fazer melhorias contínuas.",
+                "B": "Coletar feedback ocasionalmente é um começo, mas implementar um processo formal trará melhorias mais significativas. Utilize as informações coletadas para fazer ajustes que melhorem a experiência dos clientes.",
+                "C": "Perguntar informalmente aos clientes é positivo, mas sem consistência, os dados podem não ser representativos. Estruture um método mais consistente. Considere implementar um processo mais estruturado de coleta de feedback.",
+                "D": "Um processo básico de feedback é um bom começo, mas sua aplicação esporádica limita a identificação de áreas de melhoria. Estruture um método formal de feedback para obter insights mais claros sobre a satisfação do cliente."
+            },
+            "q11": {
+                "A": "Estabeleça metas claras para guiar o crescimento do restaurante e medir o sucesso das ações de vendas. Continue revisando suas metas e ajustando suas estratégias conforme o desempenho.",
+                "B": "Monitore regularmente o progresso em relação às metas e ajuste as estratégias conforme necessário. Definir metas sem acompanhamento regular dificulta o alcance de objetivos. Monitore frequentemente para ajustar estratégias.",
+                "C": "Metas de vendas definidas e revisadas periodicamente ajudam a guiar o crescimento e medir o sucesso das ações. Estabeleça metas claras para guiar o crescimento do restaurante e medir o sucesso das ações de vendas.",
+                "D": "Ótimo trabalho! Continue ajustando suas estratégias com base nos resultados das metas. Monitorar o desempenho com frequência garante que as metas de vendas sejam alcançadas e ajustadas adequadamente."
+            },
+            "q12": {
+                "A": "A falta de técnicas de upsell e cross-sell limita o aumento do ticket médio. Comece a aplicá-las para elevar o valor das vendas. Recomendamos começar a aplicar essas técnicas para aumentar o valor das vendas por cliente. Elas são simples de implementar e podem trazer resultados rápidos, como o aumento da receita por venda.",
+                "B": "Conhecimento das técnicas de upsell e cross-sell é positivo, mas a aplicação regular é necessária para resultados consistentes. Utilize essas técnicas de maneira mais consistente para aumentar o ticket médio e oferecer uma experiência mais completa ao cliente. Com treinamento da equipe, é possível melhorar a eficácia dessas estratégias.",
+                "C": "Aplicar upsell e cross-sell sem consistência reduz o potencial de aumento de vendas. Aumente a frequência para maximizar oportunidades. Aumente a consistência no uso de upsell e cross-sell para maximizar as oportunidades de vendas em cada interação com o cliente. Incentive sua equipe a aplicar essas técnicas de forma regular.",
+                "D": "A aplicação regular dessas técnicas demonstra controle sobre a estratégia de aumento de vendas, resultando em incremento no ticket médio e rentabilidade. Excelente trabalho! A aplicação consistente de upsell e cross-sell está contribuindo para o aumento de receita. Continue incentivando sua equipe a usar essas técnicas para maximizar os resultados."
+            },
+            "q13": {
+                "A": "Campanhas bem planejadas e monitoradas regularmente garantem maior efetividade e otimização dos recursos. Excelente! Continue realizando campanhas com planejamento e acompanhando os resultados para otimizar os investimentos.",
+                "B": "Fazer campanhas pontuais sem estratégia limita a capacidade de medir seu impacto e otimizar os resultados. Para melhorar, crie uma estratégia de marketing e acompanhe os resultados para ajustar as campanhas conforme necessário.",
+                "C": "Campanhas de marketing com objetivos claros e algum acompanhamento já trazem resultados, mas a falta de consistência pode limitar o impacto. Continue aprimorando suas campanhas e monitorando os resultados de maneira mais consistente.",
+                "D": "A ausência de campanhas de marketing estruturadas pode limitar a visibilidade do restaurante e reduzir o alcance de novos clientes. Considere desenvolver campanhas de marketing com objetivos claros para aumentar a visibilidade e atrair novos clientes."
+            },
+            "q14": {
+                "A": "A falta de tráfego pago limita o alcance do marketing digital. Considere essa estratégia para aumentar a visibilidade. Recomendamos considerar o marketing de influência como uma estratégia para aumentar a visibilidade do seu restaurante. Parcerias com influenciadores locais podem atrair novos clientes e fortalecer sua marca.",
+                "B": "Resultados insatisfatórios de tráfego pago indicam necessidade de ajustes. Reavalie a estratégia para melhorar o retorno. Avalie as opções de influenciadores que podem se alinhar ao seu público-alvo e inicie algumas parcerias para testar o impacto. Isso pode ser uma maneira eficaz de aumentar a visibilidade do seu restaurante rapidamente.",
+                "C": "Uso ocasional de tráfego pago é positivo, mas ajustes são necessários para resultados melhores. Estabeleça formas de mensuração. Estabeleça formas de mensurar os resultados das parcerias, como o aumento de seguidores, engajamento ou vendas. Ajuste sua estratégia para garantir que os influenciadores estejam alinhados com os objetivos do restaurante.",
+                "D": "Tráfego pago regular, com monitoramento, otimiza resultados e garante melhor retorno. Continue ajustando conforme o desempenho. Parabéns! Seu uso de marketing de influência está gerando bons resultados. Continue a monitorar e ajustar as parcerias para garantir que elas estejam sempre alinhadas aos seus objetivos de crescimento e visibilidade."
+            },
+            "q15": {
+                "A": "Presença digital limitada reduz a visibilidade e atratividade do restaurante. Amplie a atuação nas redes sociais. Continue aprimorando sua comunicação digital e busque interagir mais com seus seguidores para fortalecer a marca.",
+                "B": "Estar presente nas redes sociais é importante, mas sem uma estratégia definida, os resultados podem ser limitados. Crie uma estratégia clara de comunicação nas redes sociais para fortalecer seu posicionamento digital.",
+                "C": "Boa presença digital com comunicação regular é positiva, mas a consistência precisa ser fortalecida para melhor impacto. Considere aumentar sua presença digital e criar estratégias nas redes sociais para melhorar a visibilidade do restaurante.",
+                "D": "Forte presença digital, com comunicação regular e interação, atrai mais clientes e fortalece a marca. Continue aprimorando. Excelente! Continue mantendo uma comunicação eficaz e consistente nas redes sociais para fortalecer seu posicionamento digital."
+            },
+            "q16": {
+                "A": "Ausência de marketing de influência reduz a visibilidade. Considere parcerias para atrair mais clientes. Recomendamos considerar o marketing de influência como uma estratégia para aumentar a visibilidade do seu restaurante. Parcerias com influenciadores locais podem atrair novos clientes e fortalecer sua marca.",
+                "B": "Intenção de investir em marketing de influência é positiva, mas falta de implementação limita o impacto. Inicie algumas parcerias. Avalie as opções de influenciadores que podem se alinhar ao seu público-alvo e inicie algumas parcerias para testar o impacto. Isso pode ser uma maneira eficaz de aumentar a visibilidade do seu restaurante rapidamente.",
+                "C": "Parcerias de marketing de influência sem resultados claros indicam necessidade de mensuração. Ajuste a estratégia para mais eficácia. Estabeleça formas de mensurar os resultados das parcerias, como o aumento de seguidores, engajamento ou vendas. Ajuste sua estratégia para garantir que os influenciadores estejam alinhados com os objetivos do restaurante.",
+                "D": "Parcerias regulares com influenciadores geram bons resultados. Continue monitorando para otimizar o desempenho. Parabéns! Seu uso de marketing de influência está gerando bons resultados. Continue a monitorar e ajustar as parcerias para garantir que elas estejam sempre alinhadas aos seus objetivos de crescimento e visibilidade."
+            },
+            "q17": {
+                "A": "A variação nas finanças indica a necessidade de maior controle sobre receitas e despesas. Trabalhe para estabilizar o fluxo financeiro e minimizar os períodos de escassez.",
+                "B": "Dificuldades frequentes em cobrir custos indicam problemas na gestão financeira. Avalie suas finanças detalhadamente e implemente controles mais rígidos.",
+                "C": "Ter uma margem saudável e lucros consistentes é um excelente sinal de gestão eficaz. Mantenha o monitoramento para sustentar o crescimento.",
+                "D": "A estabilidade financeira é positiva, mas limita as oportunidades de expansão. Explore formas de aumentar a margem para novos investimentos."
+            },
+            "q18": {
+                "A": "Controle esporádico do CMV não permite um monitoramento eficaz dos custos. Aumente a frequência e o detalhamento do controle.",
+                "B": "Um controle detalhado do CMV, aliado a ajustes de preço, garante maior controle da lucratividade. Continue decisões estratégicas com base nos dados.",
+                "C": "A ausência de controle sobre o CMV dificulta a gestão dos custos e impacta a lucratividade. Implemente um sistema para acompanhar os custos.",
+                "D": "Um controle regular do CMV é positivo, mas falta integração com outros indicadores. Continue monitorando o CMV e integre-o com outros relatórios financeiros."
+            },
+            "q19": {
+                "A": "Ter controle do fluxo de caixa é bom, mas relatórios como DRE dão uma visão mais completa. Adote relatórios detalhados para maior precisão nas decisões.",
+                "B": "A falta de controle financeiro estruturado aumenta o risco de erros e decisões equivocadas. Implemente um sistema para maior precisão nas decisões.",
+                "C": "Controlar as finanças sem ferramentas formais limita a clareza da real situação do negócio. Use ferramentas como fluxo de caixa e DRE para maior controle.",
+                "D": "O uso regular de fluxo de caixa e DRE permite controle financeiro detalhado e embasado. Continue com essa prática para garantir eficiência."
+            },
+            "q20": {
+                "A": "Usar relatórios detalhados proporciona uma visão clara e facilita decisões estratégicas. Continue monitorando as finanças com relatórios detalhados para uma gestão eficiente.",
+                "B": "Acompanhar as finanças regularmente é positivo, mas usar mais indicadores pode dar uma visão mais completa. Implemente mais relatórios financeiros.",
+                "C": "O acompanhamento ocasional limita o controle sobre receitas e despesas. Acompanhe mais regularmente e adote relatórios financeiros detalhados.",
+                "D": "A falta de acompanhamento formal pode gerar dificuldades no controle financeiro. Implemente ferramentas para uma visão clara da situação financeira."
+            },
+            "q21": {
+                "A": "Reuniões regulares são importantes, mas é preciso abordar todos os aspectos. Continue com elas e busque incluir mais tópicos relevantes.",
+                "B": "Reuniões periódicas com foco na gestão e desempenho trazem maior alinhamento. Continue para manter a equipe engajada.",
+                "C": "Reuniões esporádicas ajudam, mas a falta de regularidade limita a eficácia. Aumente a frequência para abordar questões antes de se agravarem.",
+                "D": "A falta de reuniões limita a comunicação e o alinhamento da equipe. Implemente reuniões periódicas para melhorar a gestão de pessoas."
+            },
+            "q22": {
+                "A": "A equipe cumpre suas funções, mas há espaço para melhorias. Concentre-se em pontos específicos para elevar a performance da equipe.",
+                "B": "A equipe está alinhada com as expectativas e entrega um bom desempenho. Continue investindo no desenvolvimento da equipe.",
+                "C": "O baixo desempenho afeta o serviço e a operação. Avalie regularmente e forneça feedback para melhorar a performance.",
+                "D": "A equipe desempenha bem, mas alguns ajustes podem melhorar a eficiência. Continue monitorando e ajustando conforme necessário."
+            },
+            "q23": {
+                "A": "Resolver problemas é importante, mas a falta de regularidade impede a gestão preventiva. Adote um cronograma de reuniões regulares.",
+                "B": "Reuniões focadas na gestão e desenvolvimento ajudam a melhorar o desempenho da equipe. Continue para manter o alinhamento.",
+                "C": "As reuniões regulares são boas, mas falta foco na gestão de pessoas. Inclua mais discussões sobre esse tema.",
+                "D": "A ausência de reuniões prejudica a comunicação e a organização. Implemente encontros regulares para alinhamento."
+            },
+            "q24": {
+                "A": "Delegar a outro colaborador ajuda, mas falta formalidade. Formalize o onboarding para garantir consistência.",
+                "B": "Um processo formal garante que novos colaboradores se adaptem bem. Continue com o onboarding estruturado.",
+                "C": "A falta de um processo de integração dificulta a adaptação dos novos colaboradores. Estabeleça um processo para facilitar a integração.",
+                "D": "Apresentar as regras é positivo, mas pode ser mais estruturado. Continue o acompanhamento e explore formas de formalizar esse processo."
+            }
+        };
+
+        const pilarMap = {
+            "Estratégia": ["Estratégia"],
+            "Processos": ["Processos"],
+            "Vendas": ["Vendas"],
+            "Marketing": ["Marketing"],
+            "Finanças": ["Finanças"],
+            "Pessoas": ["Pessoas"]
+        };
+
+        let scoresByPilar = {
+            "Estratégia": [],
+            "Processos": [],
+            "Vendas": [],
+            "Marketing": [],
+            "Finanças": [],
+            "Pessoas": []
+        };
+
+        document.getElementById('quizForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(e.target);
+            let totalScore = 0;
+            const resultTableBody = document.getElementById('resultTableBody');
+            resultTableBody.innerHTML = '';
+
+            formData.forEach((value, key) => {
+                const [score, answer, content] = value.split('-');
+                totalScore += parseFloat(score);
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${key.toUpperCase()}</td>
+                    <td>${content}</td>
+                    <td>${answer}</td>
+                    <td>${score}</td>
+                    <td>${feedback[key][answer]}</td>
+                `;
+                resultTableBody.appendChild(row);
+
+                // Agrupar pontuações por pilar
+                Object.keys(pilarMap).forEach(pilar => {
+                    if (pilarMap[pilar].includes(content)) {
+                        scoresByPilar[pilar].push(parseFloat(score));
+                    }
+                });
+            });
+
+            const generalScore = (totalScore / 6).toFixed(2);
+            document.getElementById('totalScore').innerText = generalScore;
+
+            document.getElementById('quizContainer').style.display = 'none';
+            document.getElementById('resultContainer').style.display = 'block';
+        });
+
+        document.getElementById('nextButton').addEventListener('click', function () {
+            document.getElementById('resultContainer').style.display = 'none';
+            document.getElementById('detailedSummaryContainer').style.display = 'block';
+
+            const detailedSummaryTableBody = document.getElementById('detailedSummaryTableBody');
+            detailedSummaryTableBody.innerHTML = '';
+
+            Object.keys(scoresByPilar).forEach(pilar => {
+                const sum = scoresByPilar[pilar].reduce((a, b) => a + b, 0);
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${pilar}</td>
+                    <td>${sum.toFixed(2)}</td>
+                `;
+                detailedSummaryTableBody.appendChild(row);
+            });
+
+            // Criar gráfico de radar
+            const ctx = document.getElementById('radarChart').getContext('2d');
+            const radarChart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: Object.keys(scoresByPilar),
+                    datasets: [{
+                        label: 'Pontuação dos Pilares',
+                        data: Object.keys(scoresByPilar).map(pilar => scoresByPilar[pilar].reduce((a, b) => a + b, 0)),
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        r: {
+                            angleLines: {
+                                display: false
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 10
+                        }
+                    }
+                }
+            });
+        });
+
+        document.getElementById('backButton').addEventListener('click', function () {
+            document.getElementById('detailedSummaryContainer').style.display = 'none';
+            document.getElementById('resultContainer').style.display = 'block';
+        });
+    </script>
+</body>
+</html>
